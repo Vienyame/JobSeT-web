@@ -1,0 +1,32 @@
+<div ng-include="'app/components/shell/src/shell.html'"></div>
+
+<md-grid-list class="things-list" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5"
+              md-row-height-gt-md="1:1" md-row-height="4:3"
+              md-gutter="8px" md-gutter-gt-sm="4px">
+  <md-grid-tile ng-repeat="thing in main.awesomeThings track by $index" ng-class="main.getColor($index)"> <!--md-rowspan="{{main.getSpan($index)}}" md-colspan="{{main.getSpan($index)}}" md-colspan-sm="1"-->
+
+    <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteThing(thing)">
+      <md-icon style="fill: #fff" md-svg-icon="action:delete"></md-icon>
+    </md-button>
+
+    <md-icon class="avatar-icon" md-svg-icon="avatar:svg-{{ ($index + 1) % 11 }}"></md-icon>
+    <md-grid-tile-footer><h3>{{thing.name}}</h3></md-grid-tile-footer>
+  </md-grid-tile>
+
+  <!--<div class="row">
+      <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
+          <div class="thumbnail">
+              <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
+              <div class="caption">
+                  <h3>{{ awesomeThing.name }}</h3>
+                  <p>{{ awesomeThing.description }}</p>
+                  <p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>
+              </div>
+          </div>
+          <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteThing(awesomeThing)">
+              <md-icon style="fill: #fff" md-svg-icon="action:delete"></md-icon>
+          </md-button>
+      </div>
+  </div>-->
+
+</md-grid-list>
