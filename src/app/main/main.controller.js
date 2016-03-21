@@ -6,46 +6,20 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(socket, $scope,$log, $timeout, webDevTec, toastr,MainService) {
+  function MainController(socket, $scope,$log,MainService) {
     var vm = this;
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1458252060177;
-    vm.showToastr = showToastr;
+    vm.enterprises = [];
 
-
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function () {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
-    }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function (awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
-
-    vm.getThings = function() {
-      MainService.getThings()
-        .then(function (awesomeThings) {
-          vm.awesomeThings = awesomeThings;
-          $log.debug(vm.awesomeThings);
-          socket.syncUpdates('thing', vm.awesomeThings);
+    vm.getEnterprises = function() {
+      MainService.getEnterprises()
+        .then(function (enterprises) {
+          vm.enterprises = enterprises;
+          $log.debug(vm.enterprises);
+          socket.syncUpdates('enterprise', vm.enterprises);
         });
     };
-    vm.getThings();
+    vm.getEnterprises();
 
     vm.getColor = function ($index) {
       var _d = ($index + 1) % 11;
@@ -98,12 +72,12 @@
       }
     };
 
-    vm.deleteThing = function (thing) {
-      MainService.deleteThings(thing);
+    vm.deleteEnterprise = function (enterprise) {
+      MainService.deleteEnterprises(enterprise);
     };
 
     $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('enterprise');
     });
   }
 })();

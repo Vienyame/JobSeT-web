@@ -12,11 +12,11 @@
     function MainService($location, $rootScope, $http, $cookieStore, $q, User, SERVER) {
         var uri = SERVER.HOSTNAME+SERVER.PORT;
         return{
-            getThings:getThings,
-            deleteThings:deleteThings
+            getEnterprises:getEnterprises,
+            deleteEnterprises:deleteEnterprises
         };
 
-        function getThings(callback){
+        function getEnterprises(callback){
             var cb = callback || angular.noop;
             var deferred = $q.defer();
 
@@ -32,8 +32,8 @@
             return deferred.promise;
         }
 
-        function deleteThings(thing){
-            $http.delete(uri+'/api/things/' + thing._id);
+        function deleteEnterprises(thing){
+            $http.delete(uri+'/api/enterprises/' + thing._id);
         }
     }
 })();

@@ -3,14 +3,14 @@
 <md-grid-list class="things-list" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5"
               md-row-height-gt-md="1:1" md-row-height="4:3"
               md-gutter="8px" md-gutter-gt-sm="4px">
-  <md-grid-tile ng-repeat="thing in main.awesomeThings track by $index" ng-class="main.getColor($index)"> <!--md-rowspan="{{main.getSpan($index)}}" md-colspan="{{main.getSpan($index)}}" md-colspan-sm="1"-->
+  <md-grid-tile ng-repeat="enterprise in main.enterprises track by $index" ng-class="main.getColor($index)"> <!--md-rowspan="{{main.getSpan($index)}}" md-colspan="{{main.getSpan($index)}}" md-colspan-sm="1"-->
 
-    <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteThing(thing)">
+    <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteEnterprise(enterprise)">
       <md-icon style="fill: #fff" md-svg-icon="action:delete"></md-icon>
     </md-button>
 
     <md-icon class="avatar-icon" md-svg-icon="avatar:svg-{{ ($index + 1) % 11 }}"></md-icon>
-    <md-grid-tile-footer><h3>{{thing.name}}</h3></md-grid-tile-footer>
+    <md-grid-tile-footer><h3>{{enterprise.name}}</h3></md-grid-tile-footer>
   </md-grid-tile>
 
   <!--<div class="row">
