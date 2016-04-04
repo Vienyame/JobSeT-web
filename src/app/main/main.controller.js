@@ -19,6 +19,7 @@
           socket.syncUpdates('enterprise', vm.enterprises);
         });
     };
+
     vm.getEnterprises();
 
     vm.getColor = function ($index) {

@@ -1,9 +1,10 @@
 <div ng-include="'app/components/shell/src/shell.html'"></div>
 
-<md-grid-list class="things-list" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5"
+<!--<md-grid-list class="things-list" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5"
               md-row-height-gt-md="1:1" md-row-height="4:3"
-              md-gutter="8px" md-gutter-gt-sm="4px">
-  <md-grid-tile ng-repeat="enterprise in main.enterprises track by $index" ng-class="main.getColor($index)"> <!--md-rowspan="{{main.getSpan($index)}}" md-colspan="{{main.getSpan($index)}}" md-colspan-sm="1"-->
+              md-gutter="8px" md-gutter-gt-sm="4px" md-cols>
+  <md-grid-tile ng-repeat="enterprise in main.enterprises track by $index" ng-class="main.getColor($index)">
+    &lt;!&ndash;md-rowspan="{{main.getSpan($index)}}" md-colspan="{{main.getSpan($index)}}" md-colspan-sm="1"&ndash;&gt;
 
     <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteEnterprise(enterprise)">
       <md-icon style="fill: #fff" md-svg-icon="action:delete"></md-icon>
@@ -13,7 +14,7 @@
     <md-grid-tile-footer><h3>{{enterprise.name}}</h3></md-grid-tile-footer>
   </md-grid-tile>
 
-  <!--<div class="row">
+  &lt;!&ndash;<div class="row">
       <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
           <div class="thumbnail">
               <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
@@ -27,6 +28,70 @@
               <md-icon style="fill: #fff" md-svg-icon="action:delete"></md-icon>
           </md-button>
       </div>
-  </div>-->
+  </div>&ndash;&gt;
+
+</md-grid-list>-->
+<md-grid-list md-cols>
+
+    <div flex-xs flex-md flex-gt-xs="50" layout="column" class="layout-row flex-xs flex-gt-xs-50">
+      <md-card ng-repeat="enterprise in main.enterprises track by $index">
+        <md-card-header>
+          <md-card-avatar>
+            <img>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{enterprise.enterpriseName}}</span>
+            <span class="md-subhead">{{enterprise.enterpriseAddress}}</span>
+            <span class="md-subhead">Tel: {{enterprise.enterpriseTelephone}}</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-divider style="margin-top: 10px;"></md-divider>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{enterprise.offre}}</span>
+            <span class="md-subhead">{{enterprise.techs}}</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+
+          <md-divider></md-divider>
+          <md-list>
+            <md-list-item class="md-3-line">
+              <img class="face">
+              <div class="md-list-item-text">
+                <h3>{{enterprise.contacts[0].contactFirstname}} {{enterprise.contacts[0].contactName}}</h3>
+                <h4>{{enterprise.contacts[0].contactJob}}</h4>
+                <h4>Email: {{enterprise.contacts[0].contactMail}}</h4>
+                <h4>Tel: {{enterprise.contacts[0].contactTel}}</h4>
+              </div>
+              <md-button class="md-secondary">plus</md-button>
+              <md-divider></md-divider>
+            </md-list-item>
+
+            <md-list-item class="md-3-line" ng-repeat="interview in enterprise.interviews">
+              <div class="md-list-item-text" ng-show="$last">
+                <h3>{{interview.level.interviewLevel}}</h3>
+                <h4>{{interview.interviewDateTime | date: 'dd/MM/yyyy HH:mm'}}</h4>
+              </div>
+              <md-button class="md-secondary">plus</md-button>
+
+            </md-list-item>
+          </md-list>
+
+        </md-card-content>
+        <md-divider></md-divider>
+        <md-card-actions>
+          <button class="md-icon-button  md-button" aria-label="share">
+            <md-icon style="fill: rgb(75, 101, 245)" md-svg-icon="social:share"></md-icon>
+          </button>
+          <md-button aria-label="Remove item" class="md-icon-button delete-btn" ng-click="main.deleteThing(enterprise)">
+            <md-icon style="fill: rgb(75, 101, 245)" md-svg-icon="action:delete"></md-icon>
+          </md-button>
+        </md-card-actions>
+
+      </md-card>
+    </div>
+
 
 </md-grid-list>
